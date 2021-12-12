@@ -1,0 +1,16 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light" class="navbar-brand">
+    <a href="{% url 'indice' %}"  style="margin: 50%;">Inicio</a>
+    <hr>
+    <a href="{% url 'listado_coches' %}" style="margin: 50%;">Listado de coches</a>
+    <a href="{% url 'listado_fabricantes' %}" style="margin: 50%;">Listado de fabricantes</a>
+    <hr>
+    <a href="{% url 'crear_coche'%}"  style="margin: 50%;">Crear coche</a>
+    <a href="{% url 'crear_fabricante'%}"  style="margin: 50%;">Crear fabricante</a>
+    <hr>
+    <a href="{% url 'buscacoches'%}"  style="margin: 50%;">Buscar coche</a>
+    {% if user.is_authenticated %}
+    <hr>
+    {{user.username}}
+    <a href="{% url 'logout'%}">Salir</a>
+    {% endif %}
+  </div>

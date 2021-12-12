@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Búsqueda{% endblock %}
+
+{% block content %}
+<h1>Búsqueda en catálogo</h1>
+
+<hr>
+<!-- formulario de búsqueda -->
+<form class="form-inline mt-2 mt-md-0" action="{% url 'buscalibros' %}"
+    method="get">
+    <input 
+        name="q" 
+        class="form-control mr-sm-2" 
+        type="text" 
+        placeholder="Introduce modelo del coche"
+        {% if query %}
+            value = {{query}}
+        {% endif %}
+        aria-label="Search">
+</form>
+
+<!-- fin formuoario-->
+<div class="row mt-4">
+<hr>
+<div class="col-md-12">
+{%if noencontrado %} 
+<h3 class="error">Mensaje no encontrado</h3>
+{% else %}
+
+<ul>
+    {% for coche in coches %}
+    <li>{{coche.modelo}}
+        {%if fabricante.nombre_fabricante %}
+        ({{coche.fabricante.nombre_fabricante}})
+        {% endif %}
+
+    </li>
+
+    {% endfor %}
+</ul>
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?q={{query}}&page={{ page_obj.previous_page_number }}">anterior</a>
+                {% endif %}
+                <span class="page-current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?q={{query}}&page={{ page_obj.next_page_number }}">siguiente</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+{% endif %}
+</div>
+</div>
+{% endblock%}

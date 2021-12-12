@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Subir archivo</h2>
+<form action="{% url 'subir-archivo' %}" 
+    method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="archivo">
+    <input type="submit" value="Subir">
+</form>
+<hr>
+{% if imagen %} 
+<img src="/media/{{imagen}}" alt="{{imagen}}">
+{% endif %}
+{% endblock %}

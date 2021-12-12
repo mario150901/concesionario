@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de coches{% endblock %}
+
+{% block content %}
+    <h1>Catálogo del concesionario</h1>
+    
+    <ul>
+    {% for coche in coches %}
+        <li>{{coche.marca}}</li>
+
+    {% endfor %}
+    </ul>
+    
+
+
+{% endblock%}

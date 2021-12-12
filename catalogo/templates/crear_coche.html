@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>Crear nuevo coche</h1>
+  <h3>Formulario de creación de coches</h3>
+    <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Crear">
+  </form>
+{% crispy form %}
+{% endblock %}
